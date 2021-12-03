@@ -21,8 +21,8 @@ def authorTitle(subjectName):
 
         #other authors
         if rawAuthors:
-            if rawAuthors[0] == "et al.":
-                authors += "et al. "
+            if rawAuthors[0] == "et al":
+                authors += "et al"
                 ILC = "(" + lastname + " et al.)"
             else:
                 authors += "and " + rawAuthors[0]

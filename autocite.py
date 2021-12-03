@@ -4,16 +4,16 @@ import mla
 while True:
     #mode selection
     mode = inp('''
-    Welcome to AutoCite!
-    What are you citing today?
-        1 - Journal Article
-        2 - News Article
-        3 - Print Book
-        4 - eBook
-        5 - Book Chapter
-        6 - Web Page
-        7 - Exit
-    ''', True)
+Welcome to AutoCite!
+What are you citing today?
+    1 - Journal Article
+    2 - News Article
+    3 - Print Book
+    4 - eBook
+    5 - Book Chapter
+    6 - Web Page
+    7 - Exit
+''', True)
 
     #actually go to the section of the code
     if mode == '1' or mode == "journal article":

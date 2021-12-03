@@ -8,6 +8,7 @@ def clone(var):
 
 #just some of my standard functions that i use everywhere
 def inp(msg, lower=False):
+    print ()
     usr = input(msg + "\n$ ")
     if usr:
         while usr[-1] == ' ':
