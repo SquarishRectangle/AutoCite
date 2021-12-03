@@ -8,13 +8,21 @@ def clone(var):
 
 #just some of my standard functions that i use everywhere
 def inp(msg, lower=False):
-    print ()
-    usr = input(msg + "\n$ ")
+    usr = ''
+    print (msg)
+    while True:
+        txt = input()
+        if txt == '':
+            break
+        usr += txt + ' '
+
     if usr:
         while usr[-1] == ' ':
             usr = usr[:-1]
+
     if lower:
         usr = usr.lower()
+
     return usr
 
 #create and write to a file
