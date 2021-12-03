@@ -1,5 +1,5 @@
 from tools import *
-import nullabledate
+import nulldate
 
 
 #get the author and title since it's the same for almost all the things
@@ -97,22 +97,7 @@ def journal():
     if issue:
         issue = "no. " + issue + ', '
 
-    #get date. This isn't a function since it's subtly different across different modes
-    while True:
-        date = getDate()
-        if date.year or date.nodate:
-            break
-        else:
-            print ("Missing year")
-
-    strDate = ""
-    if not date.nodate:
-        if date.year:
-            strDate = str(date.year) + ', '
-            if date.month:
-                strDate = date.strMonth + ' ' + strDate
-                if date.day:
-                    strDate = str(date.day) + ' ' + strDate
+    strDate = getDate("mla", ',')
 
     #get page numbers
     page = ""
@@ -130,7 +115,10 @@ def journal():
 
     #create the citation and file containing the proper citation, effective title and in line citation
     citation = authors + title + journalName + volume + issue + strDate + page + db + url
-    createFile("Citations/MLA", authors[:-2], [eTitle, ILC, citation])
+    if authors:
+        createFile("Citations/MLA", authors[:-2], [ILC, citation])
+    else:
+        createFile("Citations/MLA", eTitle[:-2], [ILC, citation])
 
 
 #news article
@@ -146,29 +134,17 @@ def news():
     #get publisher name
     publisher = publication("publisher", True)
 
-    #get date. This isn't a function since it's subtly different across different modes
-    while True:
-        date = getDate()
-        if date.year or date.nodate:
-            break
-        else:
-            print ("Missing year")
-
-    strDate = ""
-    if not date.nodate:
-        if date.year:
-            strDate = str(date.year) + ', '
-            if date.month:
-                strDate = date.strMonth + ' ' + strDate
-                if date.day:
-                    strDate = str(date.day) + ' ' + strDate
+    strDate = getDate("mla", ',')
 
     #get url
     url = inp("Enter URL") + ". "
 
     #create the citation and file containing the proper citation, effective title and in line citation
     citation = authors + title + publisher + strDate + url
-    createFile("Citations/MLA", authors[:-2], [eTitle, ILC, citation])
+    if authors:
+        createFile("Citations/MLA", authors[:-2], [ILC, citation])
+    else:
+        createFile("Citations/MLA", eTitle[:-2], [ILC, citation])
 
 
 #physically printed books
@@ -207,27 +183,14 @@ def printBook():
     #get publisher
     publisher = publication("publisher")
 
-    #get date. This isn't a function since it's subtly different across different modes
-    while True:
-        date = getDate()
-        if date.year or date.nodate:
-            break
-        else:
-            print ("Missing year")
-
-    strDate = ""
-    if not date.nodate:
-        if date.year:
-            strDate = str(date.year) + '. '
-            if date.month:
-                strDate = date.strMonth + ' ' + strDate
-                if date.day:
-                    strDate = str(date.day) + ' ' + strDate
+    strDate = getDate("mla", '.')
 
     #create the citation and file containing the proper citation, effective title and in line citation
     citation = authors + title + edition + publisher + strDate
-    createFile("Citations/MLA", authors[:-2], [eTitle, ILC, citation])
-
+    if authors:
+        createFile("Citations/MLA", authors[:-2], [ILC, citation])
+    else:
+        createFile("Citations/MLA", eTitle[:-2], [ILC, citation])
 
 #eBooks
 def eBook():
@@ -245,22 +208,7 @@ def eBook():
     #get publisher
     publisher = publication("publisher")
 
-    #get date. This isn't a function since it's subtly different across different modes
-    while True:
-        date = getDate()
-        if date.year or date.nodate:
-            break
-        else:
-            print ("Missing year")
-
-    strDate = ""
-    if not date.nodate:
-        if date.year:
-            strDate = str(date.year) + '. '
-            if date.month:
-                strDate = date.strMonth + ' ' + strDate
-                if date.day:
-                    strDate = str(date.day) + ' ' + strDate
+    strDate = getDate("mla", '.')
 
     #get database and url
     dburl = databaseURL(True)
@@ -272,8 +220,10 @@ def eBook():
 
     #create the citation and file containing the proper citation, effective title and in line citation
     citation = authors + title + editors + publisher + strDate + db + url
-    createFile("Citations/MLA", authors[:-2], [eTitle, ILC, citation])
-
+    if authors:
+        createFile("Citations/MLA", authors[:-2], [ILC, citation])
+    else:
+        createFile("Citations/MLA", eTitle[:-2], [ILC, citation])
 
 #specific chapters in books
 def chapter():
@@ -294,22 +244,7 @@ def chapter():
     #get the publisher
     publisher = publication("publisher")
 
-    #get date. This isn't a function since it's subtly different across different modes
-    while True:
-        date = getDate()
-        if date.year or date.nodate:
-            break
-        else:
-            print ("Missing year")
-
-    strDate = ""
-    if not date.nodate:
-        if date.year:
-            strDate = str(date.year) + '. '
-            if date.month:
-                strDate = date.strMonth + ' ' + strDate
-                if date.day:
-                    strDate = str(date.day) + ' ' + strDate
+    strDate = getDate("mla", '.')
 
     #get page number
     page = ""
@@ -327,8 +262,10 @@ def chapter():
 
     #create the citation and file containing the proper citation, effective title and in line citation
     citation = authors + title + book + editors + publisher + strDate + page + db + url
-    createFile("Citations/MLA", authors[:-2], [eTitle, ILC, citation])
-
+    if authors:
+        createFile("Citations/MLA", authors[:-2], [ILC, citation])
+    else:
+        createFile("Citations/MLA", eTitle[:-2], [ILC, citation])
 
 #web pages
 def web():
@@ -348,4 +285,7 @@ def web():
 
     #create the citation and file containing the proper citation, effective title and in line citation
     citation = authors + title + publisher + url
-    createFile("Citations/MLA", authors[:-2], [eTitle, ILC, citation])
+    if authors:
+        createFile("Citations/MLA", authors[:-2], [ILC, citation])
+    else:
+        createFile("Citations/MLA", eTitle[:-2], [ILC, citation])

@@ -3,8 +3,7 @@ import mla
 
 while True:
     #mode selection
-    mode = inp('''
-Welcome to AutoCite!
+    mode = inp('''Welcome to AutoCite!
 What are you citing today?
     1 - Journal Article
     2 - News Article
@@ -12,8 +11,7 @@ What are you citing today?
     4 - eBook
     5 - Book Chapter
     6 - Web Page
-    7 - Exit
-''', True)
+    7 - Exit''', True)
 
     #actually go to the section of the code
     if mode == '1' or mode == "journal article":

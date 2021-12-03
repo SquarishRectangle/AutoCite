@@ -1,6 +1,6 @@
 import os
 import copy
-import nullabledate
+import nulldate
 
 #just some of my standard functions that i use everywhere
 def clone(var):
@@ -14,7 +14,7 @@ def inp(msg, lower=False):
         txt = input()
         if txt == '':
             break
-        usr += txt + ' '
+        usr += txt
 
     if usr:
         while usr[-1] == ' ':
@@ -85,10 +85,27 @@ def getAuthors(cFormat):
             else:
                 print ("Please enter a valid number of authors")
 
-#get date function returns a nullabledate.Date data type
-def getDate():
-    usrDate = inp("Enter date (enter 'nd' or 'no date' if date is missing)")
-    return nullabledate.parser(usrDate)
+#get date function returns a nulldate.Date data type
+def getDate(cFormat, endPunc):
+    if cFormat == "mla":
+        while True:
+            usrDate = inp("Enter date (enter 'nd' or 'no date' if date is missing)")
+            date = nulldate.parser(usrDate)
+            if date.year or date.nodate:
+                break
+            else:
+                print ("Missing year")
+
+        strDate = ""
+        if not date.nodate:
+            if date.year:
+                strDate = str(date.year) + endPunc + ' '
+                if date.month:
+                    strDate = date.strMonth + ' ' + strDate
+                    if date.day:
+                        strDate = str(date.day) + ' ' + strDate
+
+        return strDate
 
 #get pages. returns a list of starting and ending page
 def getPages():
