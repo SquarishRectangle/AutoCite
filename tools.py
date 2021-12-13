@@ -28,7 +28,7 @@ def inp(msg, lower=False):
 #create and write to a file
 def createFile(path, filename, contents=None):
     #create directory if not exists
-    while not os.path.exists(path):
+    if not os.path.exists(path):
         os.makedirs(path)
 
     #add the path together
@@ -36,19 +36,19 @@ def createFile(path, filename, contents=None):
 
     #create the file. (if it already exists append an integer to the end of file name)
     i = 2
-    if os.path.exists(fPath):
+    if os.path.exists(fPath + ".txt"):
         fPath += str(i)
         while os.path.exists(fPath):
             i += 1
-            fPath = path + filename + str(i)
+            fPath = path + '/' + filename + str(i)
 
     file = open(fPath + ".txt", 'a')
     #write to file if needed
     if contents:
         for c in contents:
-            file.write(c + "\n\n")
+            file.write(c + "\n")
+        print ("Your citation has been generated to " + fPath + ".txt")
     file.close()
-    print ("Your citation has been generated to " + fPath + ".txt")
 
 
 #get author function (it lives here because I originally wanted to do APA as well as MLA but i ran out of time)

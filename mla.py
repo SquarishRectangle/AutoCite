@@ -270,7 +270,7 @@ def chapter():
 #web pages
 def web():
     #get author and title
-    aT = authorTitle("chapter")
+    aT = authorTitle("web page")
 
     authors = aT[0]
     title = '\"' + aT[1] + "\" "

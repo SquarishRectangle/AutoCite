@@ -3,11 +3,14 @@ import re
 #date data type
 class Date:
     #initiate variables since each date is its own variable
-    def __init__(self, year, month, day, nodate=False):
+    def __init__(self, year, month, day):
         self.year = year
         self.day = day
         self.month = month
-        self.nodate = nodate
+        if not year and not month and not day:
+            self.nodate = True
+        else:
+            self.nodate = False
 
         #convert to an abbrieveated string month
         if month == 1:
@@ -81,10 +84,10 @@ abrvmonths = {
 #user input parser
 def parser(string):
 
-    if "nd" in string or "no date" in string:
-        return Date(None, None, None, True)
+    if string == "nd" or string == "no date":
+        return Date(None, None, None)
 
-    liststr = re.split(" |/|\\\\|,|\.", string)
+    liststr = re.split(" |/|\\\\|,|\.|st|nd|th", string)
     year = None
     month = None
     day = None
